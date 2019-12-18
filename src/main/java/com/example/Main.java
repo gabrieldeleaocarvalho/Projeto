@@ -21,7 +21,9 @@ package com.example;
 // import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 // import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,12 +38,13 @@ import java.util.Map;*/
 
 @Controller
 @SpringBootApplication
+@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 public class Main {
 
   /*@Value("${spring.datasource.url}")
-  private String dbUrl;*/
+  private String dbUrl;
 
-  /*@Autowired
+  @Autowired
   private DataSource dataSource;*/
 
   public static void main(String[] args) throws Exception {
@@ -72,9 +75,9 @@ public class Main {
       model.put("message", e.getMessage());
       return "error";
     }
-  }
+  }*/
 
-  @Bean
+  /*@Bean
   public DataSource dataSource() throws SQLException {
     if (dbUrl == null || dbUrl.isEmpty()) {
       return new HikariDataSource();
