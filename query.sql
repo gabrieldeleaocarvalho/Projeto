@@ -81,3 +81,12 @@ UPDATE Jogador SET Ativo = false WHERE Nome = 'Marta';
 
 -- Remove o jogador de nome Pelé (WHERE Nome = 'Pelé') da tabela Jogador 
 DELETE FROM Jogador WHERE Nome = 'Pelé';
+
+DROP TABLE IF EXISTS Product;
+
+CREATE TABLE Product (
+    Id INT AUTO_INCREMENT, 
+    raca VARCHAR(255),
+    valor FLOAT,
+    quantidade INT
+);

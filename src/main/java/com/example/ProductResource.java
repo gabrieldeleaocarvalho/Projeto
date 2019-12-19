@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,10 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class ProductResource {
   private List<Product> produtos;
+
+  @Autowired
+  private ProductRepository repository;
   /*
    * Construtor do ProductResource, preparando uma lista de produtos
    */
-  public ProductResource() {
+  public ProductResource(ProductRepository repository) {
+    this.repository = repository;
     this.produtos = new ArrayList<>();
     this.produtos.add(new Product("cao", 50.00, 5));
     this.produtos.add(new Product("gato", 30.00, 7));
@@ -28,8 +34,9 @@ public class ProductResource {
    * @return lista de produtos, filtrados ou nao
    */
   @RequestMapping(value = "/produtos/", method = RequestMethod.GET)
-  public List<Product> buscarProdutos(@RequestParam(required = false) String raca) {
-    if(raca == null) {
+  public Iterable<Product> buscarProdutos(@RequestParam(required = false) String raca) {
+    return this.repository.findAll();
+    /*if(raca == null) {
       return this.produtos;
     } else {
       List<Product> prod = new ArrayList<>();
@@ -37,7 +44,7 @@ public class ProductResource {
         if(raca.equals(p.getRaca())) prod.add(p);
       }
       return prod;
-    }
+    }*/
   }
 
   /**
