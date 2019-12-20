@@ -6,7 +6,7 @@ GET http://localhost:5000/produtos/?raca=cao HTTP/1.1
 
 ###
 
-GET http://localhost:5000/produtos/2/ HTTP/1.1
+GET http://localhost:5000/produtos/1/ HTTP/1.1
 
 ###
 
@@ -26,7 +26,7 @@ POST http://localhost:5000/produtos/
 Content-Type application/json; charset=UTF-8
 
 {
-  "raca": "ave",
+  "raca": "peixe",
   "valor": "70.00",
   "quantidade": 5
 }
