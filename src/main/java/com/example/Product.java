@@ -10,28 +10,31 @@ public class Product {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    private String raca;
+    private String console;
     private double valor;
-    private int quantidade;
-    protected Product() {}
-    public Product(String raca, 
-    double valor, int quantidade) {
-        this.raca = raca;
-        this.valor = valor;
-        this.quantidade = quantidade;
-    }
+    private int jogos;
+    private int controles;
 
+    protected Product() {}
+    public Product(String console, 
+    double valor, int jogos, int controles) {
+        this.console = console;
+        this.valor = valor;
+        this.jogos = jogos;
+        this.controles = controles;
+    }
+    
     /**
-     * @return the raca
+     * @return the console
      */
-    public String getRaca() {
-        return this.raca;
+    public String getConsole() {
+        return this.console;
     }
     /**
-     * @param raca the raca to set
+     * @param console the console to set
      */
-    public void setRaca(String raca) {
-        this.raca = raca;
+    public void setConsole(String console) {
+        this.console = console;
     }
 
     public double getValor() {
@@ -40,10 +43,18 @@ public class Product {
     public void setValor(double valor) {
         this.valor = valor;
     }
-    public int getQuantidade() {
-        return this.quantidade;
+
+    public int getJogos() {
+        return this.jogos;
     }
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setJogos(int jogos) {
+        this.jogos = jogos;
+    }
+
+    public int getControles(){
+        return this.controles;
+    }
+    public void setControle(int controles){
+        this.controles = controles;
     }
 }

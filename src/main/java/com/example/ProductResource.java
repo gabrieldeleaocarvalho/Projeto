@@ -24,17 +24,16 @@ public class ProductResource {
   public ProductResource(ProductRepository repository) {
     this.repository = repository;
     /*this.produtos = new ArrayList<>();
-    this.produtos.add(new Product("cao", 50.00, 5));
-    this.produtos.add(new Product("gato", 30.00, 7));*/
+    this.produtos.add(new Product("playstation", 1899.99, 1));
+    this.produtos.add(new Product("xbox", 1399.99, 3, 2));*/
   }
-
   /**
    * Metodo de requisicao do tipo GET, para uma lista
-   * @param raca tipo de raca para filtrar
+   * @param console tipo de console para filtrar
    * @return lista de produtos, filtrados ou nao
    */
   @RequestMapping(value = "/produtos/", method = RequestMethod.GET)
-  public Iterable<Product> buscarProdutos(@RequestParam(required = false) String raca) {
+  public Iterable<Product> buscarProdutos(@RequestParam(required = false) String console) {
     return this.repository.findAll();
     /*if(raca == null) {
       return this.produtos;
@@ -68,25 +67,25 @@ public class ProductResource {
     // this.produtos.remove(id - 1);
   }
 
-  @RequestMapping(value = "/produtos/", 
-  method = RequestMethod.POST)
+  @RequestMapping(value = "/produtos/", method = RequestMethod.POST)
   public Product criarProduto(@RequestBody Product product) {
-    String raca = product.getRaca();
+    String console = product.getConsole();
     double valor = product.getValor();
-    int quantidade = product.getQuantidade();
-    return this.repository.save(new Product(raca, valor, quantidade));
-    // return new Product(raca, valor, quantidade);
+    int jogos= product.getJogos();
+    int controles= product.getControles();
+    return this.repository.save(new Product(console, valor, jogos, controles));
+    // return new Product(console, valor, jogos);
   }
 
-  @RequestMapping(value="/produtos/{id}", 
-  method=RequestMethod.PUT)
+  @RequestMapping(value="/produtos/{id}", method=RequestMethod.PUT)
   public void alterarProduto(@PathVariable Long id,
   @RequestBody Product produtoParam) {
       // Product produto = this.produtos.get(id - 1);
       Product produto = this.repository.findById(id).get();
-      produto.setQuantidade(produtoParam.getQuantidade());
+      produto.setConsole(produtoParam.getConsole());
       produto.setValor(produtoParam.getValor());
-      produto.setRaca(produtoParam.getRaca());
+      produto.setJogos(produtoParam.getJogos());
+      produto.setControle(produtoParam.getControles());
+      this.repository.save(produto);
   }
-
 }
